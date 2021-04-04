@@ -37,6 +37,8 @@ namespace ServiceDesk.IntegrationTests.Controllers
             var result = await controller.CreateTicket(input, CancellationToken.None);
 
             result.Should().BeOfType<CreatedAtRouteResult>();
+            var createdTicket = (result as CreatedAtRouteResult)?.Value as TicketDetailsDto;
+            createdTicket.Should().BeEquivalentTo(input, x => x.ExcludingMissingMembers());
         }
     }
 }

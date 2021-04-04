@@ -64,7 +64,19 @@ namespace ServiceDesk.Web.Controllers
                 };
 
                 await _emailSender.SendAsync(message);
-                return CreatedAtRoute("GetTicketById", new { id = ticket.Id }, ticket);
+
+                var ticketDetails = new TicketDetailsDto
+                {
+                    Title = ticket.Title,
+                    Details = ticket.Details,
+                    SubmitterName = ticket.SubmitterName,
+                    SubmitterEmail = ticket.SubmitterEmail,
+                    Id = ticket.Id,
+                    State = ticket.State.ToString(),
+                    Created = ticket.Created
+                };
+                
+                return CreatedAtRoute("GetTicketById", new { id = ticket.Id }, ticketDetails);
             }
             catch (Exception exception)
             {
