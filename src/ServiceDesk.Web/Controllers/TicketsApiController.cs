@@ -35,6 +35,8 @@ namespace ServiceDesk.Web.Controllers
             TicketCreateDto dto,
             CancellationToken cancellationToken = default)
         {
+            _logger.LogInformation("Creating ticket");
+
             var ticket = new Ticket
             {
                 Title = dto.Title,
@@ -52,6 +54,8 @@ namespace ServiceDesk.Web.Controllers
 
                 await _db.SaveChangesAsync(cancellationToken);
 
+                _logger.LogInformation($"Ticket created {ticket.Id}");
+                
                 var message = new EmailMessage
                 {
                     Subject = "We have received your email",
