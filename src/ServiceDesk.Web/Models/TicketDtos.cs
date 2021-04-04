@@ -1,4 +1,6 @@
-﻿namespace ServiceDesk.Web.Models
+﻿using System;
+
+namespace ServiceDesk.Web.Models
 {
     public class TicketDetailsDto
     {
@@ -8,9 +10,10 @@
         public string SubmitterEmail { get; set; }
         public long Id { get; set; }
         public string State { get; set; }
+        public DateTime Created { get; set; }
     }
 
-    public class TicketCreateDto
+    public class TicketCreateDto : BaseCommand
     {
         public string Title { get; set; }
         public string Details { get; set; }

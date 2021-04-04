@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ServiceDesk.Web.Data
 {
@@ -13,5 +14,12 @@ namespace ServiceDesk.Web.Data
         public DateTime Created { get; set; }
         public DateTime LastUpdated { get; set; }
         public DateTime? ClosedDate { get; set; }
+
+        public List<Comment> Comments { get; set; }
+
+        public Ticket()
+        {
+            Comments = new List<Comment>();
+        }
     }
 }

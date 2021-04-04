@@ -7,7 +7,10 @@ namespace ServiceDesk.IntegrationTests
     {
         public static void InitializeDbForTests(ApplicationDbContext db)
         {
-            db.Database.ExecuteSqlRaw("DELETE FROM dbo.Tickets");
+            var deleteSql = @"
+                DELETE FROM dbo.Comments; 
+                DELETE FROM dbo.Tickets;";
+            db.Database.ExecuteSqlRaw(deleteSql);
         }
     }
 }

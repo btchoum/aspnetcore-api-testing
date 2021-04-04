@@ -41,8 +41,8 @@ namespace ServiceDesk.Web.Controllers
                 Details = dto.Details,
                 SubmitterName = dto.SubmitterName,
                 SubmitterEmail = dto.SubmitterEmail,
-                Created = DateTime.UtcNow,
-                LastUpdated = DateTime.UtcNow,
+                Created = dto.Now,
+                LastUpdated = dto.Now,
                 State = TicketState.New
             };
 
@@ -62,10 +62,11 @@ namespace ServiceDesk.Web.Controllers
                 await _emailSender.SendAsync(message);
                 return CreatedAtRoute("GetTicketById", new { id = ticket.Id }, ticket);
             }
-            catch (Exception e)
+            catch (Exception exception)
             {
-                _logger.LogError(e, "Error occurred when submitting the ticket");
-                return StatusCode((int)HttpStatusCode.InternalServerError, "");
+                var message = "Error occurred when submitting the ticket";
+                _logger.LogError(exception, message);
+                return StatusCode((int)HttpStatusCode.InternalServerError, message);
             }
         }
 
@@ -82,7 +83,8 @@ namespace ServiceDesk.Web.Controllers
                     SubmitterName = t.SubmitterName,
                     SubmitterEmail = t.SubmitterEmail,
                     Id = t.Id,
-                    State = t.State.ToString()
+                    State = t.State.ToString(),
+                    Created = t.Created
                 })
                 .FirstOrDefaultAsync(t => t.Id == id, cancellationToken);
 

@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using ServiceDesk.Web;
@@ -49,8 +50,29 @@ namespace ServiceDesk.IntegrationTests
             Assert.Equal(payload.SubmitterName, ticket.SubmitterName);
             Assert.Equal(payload.SubmitterEmail, ticket.SubmitterEmail);
             Assert.Equal("New", ticket.State);
+            Assert.NotEqual(DateTime.MinValue, ticket.Created);
         }
-        
+
+
+        [Fact]
+        public async Task Add_Comment()
+        {
+            var client = _factory.CreateClient();
+
+            var payload = GivenValidInput();
+            var postResponse = await client.PostAsJsonAsync("api/tickets", payload);
+            postResponse.EnsureSuccessStatusCode();
+
+            var location = $"{postResponse.Headers.Location}/comments";
+
+            var commentPayload = new 
+            {
+                text = "New Comment"
+            };
+            var response = await client.PostAsJsonAsync(location, commentPayload);
+            response.EnsureSuccessStatusCode();
+        }
+
         private static TicketCreateDto GivenValidInput()
         {
             var payload = new TicketCreateDto
