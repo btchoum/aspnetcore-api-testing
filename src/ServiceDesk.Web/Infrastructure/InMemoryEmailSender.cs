@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using ServiceDesk.Web.Models;
 
-namespace ServiceDesk.Web.Controllers
+namespace ServiceDesk.Web.Infrastructure
 {
     public class InMemoryEmailSender : IEmailSender
     {

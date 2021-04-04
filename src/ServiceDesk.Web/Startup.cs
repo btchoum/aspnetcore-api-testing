@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ServiceDesk.Web.Controllers;
 using ServiceDesk.Web.Data;
+using ServiceDesk.Web.Infrastructure;
 
 namespace ServiceDesk.Web
 {

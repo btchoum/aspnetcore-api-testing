@@ -1,4 +1,4 @@
-﻿namespace ServiceDesk.Web.Controllers
+﻿namespace ServiceDesk.Web.Models
 {
     public class EmailMessage
     {

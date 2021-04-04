@@ -14,14 +14,4 @@ namespace ServiceDesk.Web.Data
         public DateTime LastUpdated { get; set; }
         public DateTime? ClosedDate { get; set; }
     }
-
-    public enum TicketState
-    {
-        New = 1,
-        Active,
-        Pending,
-        Resolved,
-        Closed,
-        Cancelled
-    }
 }
