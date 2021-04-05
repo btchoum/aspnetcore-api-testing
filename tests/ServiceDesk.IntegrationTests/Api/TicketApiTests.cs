@@ -6,7 +6,7 @@ using ServiceDesk.Web;
 using ServiceDesk.Web.ApiModels;
 using Xunit;
 
-namespace ServiceDesk.IntegrationTests
+namespace ServiceDesk.IntegrationTests.Api
 {
     public class TicketApiTests
             : IClassFixture<CustomWebApplicationFactory<Startup>>
