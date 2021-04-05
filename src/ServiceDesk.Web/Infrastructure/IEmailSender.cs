@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using ServiceDesk.Web.Models;
+using ServiceDesk.Web.ApiModels;
 
 namespace ServiceDesk.Web.Infrastructure
 {

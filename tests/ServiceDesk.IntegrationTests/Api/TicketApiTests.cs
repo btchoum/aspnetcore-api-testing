@@ -3,7 +3,7 @@ using System.Net;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using ServiceDesk.Web;
-using ServiceDesk.Web.Models;
+using ServiceDesk.Web.ApiModels;
 using Xunit;
 
 namespace ServiceDesk.IntegrationTests

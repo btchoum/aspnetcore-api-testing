@@ -6,10 +6,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Moq;
+using ServiceDesk.Web.ApiModels;
 using ServiceDesk.Web.Controllers;
 using ServiceDesk.Web.Data;
 using ServiceDesk.Web.Infrastructure;
-using ServiceDesk.Web.Models;
 using Xunit;
 
 namespace ServiceDesk.IntegrationTests.Controllers

@@ -1,4 +1,4 @@
-﻿namespace ServiceDesk.Web.Models
+﻿namespace ServiceDesk.Web.ApiModels
 {
     public class AddCommentDto : BaseCommand
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using FluentAssertions;
+using ServiceDesk.Web.ApiModels;
 using ServiceDesk.Web.Data;
-using ServiceDesk.Web.Models;
 using Xunit;
 
 namespace ServiceDesk.UnitTests.ApiModels

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using ServiceDesk.Web.Data;
 
-namespace ServiceDesk.Web.Models
+namespace ServiceDesk.Web.ApiModels
 {
     public class TicketDetailsDto
     {

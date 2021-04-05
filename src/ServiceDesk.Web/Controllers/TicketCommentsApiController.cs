@@ -4,9 +4,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using ServiceDesk.Web.ApiModels;
 using ServiceDesk.Web.Data;
 using ServiceDesk.Web.Infrastructure;
-using ServiceDesk.Web.Models;
 
 namespace ServiceDesk.Web.Controllers
 {
