@@ -75,6 +75,11 @@ namespace ServiceDesk.Web.Controllers
             var ticket = await _db.Tickets
                 .FirstOrDefaultAsync(t => t.Id == id, cancellationToken);
 
+            if (ticket == null)
+            {
+                return NotFound();
+            }
+            
             return Ok(new TicketDetailsDto(ticket));
         }
     }
