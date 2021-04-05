@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
@@ -37,16 +36,7 @@ namespace ServiceDesk.Web.Controllers
         {
             _logger.LogInformation("Creating ticket");
 
-            var ticket = new Ticket
-            {
-                Title = dto.Title,
-                Details = dto.Details,
-                SubmitterName = dto.SubmitterName,
-                SubmitterEmail = dto.SubmitterEmail,
-                Created = dto.Now,
-                LastUpdated = dto.Now,
-                State = TicketState.New
-            };
+            var ticket = dto.MapToTicket();
 
             try
             {
@@ -65,16 +55,7 @@ namespace ServiceDesk.Web.Controllers
 
                 await _emailSender.SendAsync(message);
 
-                var ticketDetails = new TicketDetailsDto
-                {
-                    Title = ticket.Title,
-                    Details = ticket.Details,
-                    SubmitterName = ticket.SubmitterName,
-                    SubmitterEmail = ticket.SubmitterEmail,
-                    Id = ticket.Id,
-                    State = ticket.State.ToString(),
-                    Created = ticket.Created
-                };
+                var ticketDetails = new TicketDetailsDto(ticket);
                 
                 return CreatedAtRoute("GetTicketById", new { id = ticket.Id }, ticketDetails);
             }
@@ -92,19 +73,9 @@ namespace ServiceDesk.Web.Controllers
             CancellationToken cancellationToken = default)
         {
             var ticket = await _db.Tickets
-                .Select(t => new TicketDetailsDto
-                {
-                    Title = t.Title,
-                    Details = t.Details,
-                    SubmitterName = t.SubmitterName,
-                    SubmitterEmail = t.SubmitterEmail,
-                    Id = t.Id,
-                    State = t.State.ToString(),
-                    Created = t.Created
-                })
                 .FirstOrDefaultAsync(t => t.Id == id, cancellationToken);
 
-            return Ok(ticket);
+            return Ok(new TicketDetailsDto(ticket));
         }
     }
 }
